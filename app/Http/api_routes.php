@@ -1,5 +1,15 @@
 <?php
 
+ApiRoute::group(['prefix' => 'clients', 'as' => 'api.clients.'], function() {
+
+	ApiRoute::get('/', 'ClientsController@index')->name('index');
+	ApiRoute::get('/{clients}', 'ClientsController@show')->name('show');
+	ApiRoute::post('/', 'ClientsController@store')->name('store');
+	ApiRoute::put('/{clients}', 'ClientsController@update')->name('update');
+	ApiRoute::delete('/{clients}', 'ClientsController@destroy')->name('delete');
+
+});
+
 ApiRoute::group(['prefix' => 'projects', 'as' => 'api.projects.'], function() {
 
 	ApiRoute::get('/', 'ProjectsController@index')->name('index');
@@ -18,15 +28,15 @@ ApiRoute::group(['prefix' => 'projects', 'as' => 'api.projects.'], function() {
 
 	});
 
-	ApiRoute::group(['prefix' => '{projects}/stakeholders', 'as' => 'stakeholders.'], function() {
+	// ApiRoute::group(['prefix' => '{projects}/stakeholders', 'as' => 'stakeholders.'], function() {
 
-		ApiRoute::get('/', 'ProjectStakeholdersController@index')->name('index');
-		ApiRoute::get('/{stakeholders}', 'ProjectStakeholdersController@show')->name('show');
-		ApiRoute::post('/', 'ProjectStakeholdersController@store')->name('store');
-		ApiRoute::put('/{stakeholders}', 'ProjectStakeholdersController@update')->name('update');
-		ApiRoute::delete('/{stakeholders}', 'ProjectStakeholdersController@destroy')->name('delete');
+	// 	ApiRoute::get('/', 'ProjectStakeholdersController@index')->name('index');
+	// 	ApiRoute::get('/{stakeholders}', 'ProjectStakeholdersController@show')->name('show');
+	// 	ApiRoute::post('/', 'ProjectStakeholdersController@store')->name('store');
+	// 	ApiRoute::put('/{stakeholders}', 'ProjectStakeholdersController@update')->name('update');
+	// 	ApiRoute::delete('/{stakeholders}', 'ProjectStakeholdersController@destroy')->name('delete');
 
-	});
+	// });
 
 });
 

@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 use Stories\Http\Requests;
 use Stories\Http\Controllers\Controller;
 
-use Stories\Project;
-use Stories\Transformers\V1\ProjectTransformer;
+use Stories\Client;
+use Stories\Transformers\V1\ClientTransformer;
 
-class ProjectsController extends AbstractApiController
+class ClientsController extends AbstractApiController
 {
 
-    protected $routeKey = 'projects';
+    protected $routeKey = 'clients';
 
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class ProjectsController extends AbstractApiController
      */
     public function index()
     {
-        return $this->doIndex(new Project, new ProjectTransformer);
+        return $this->doIndex(new Client, new ClientTransformer);
     }
 
     /**
@@ -34,49 +34,47 @@ class ProjectsController extends AbstractApiController
     public function store(Request $request)
     {
         $rules = [
-            'name'      => 'required|unique:projects,name',
-            'client_id' => 'required|exists:clients,id',
+            'name' => 'required|unique:clients,name',
         ];
 
-        return $this->doStore($request, new Project, $rules);
+        return $this->doStore($request, new Client, $rules);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  Project $project
+     * @param  int  Client $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Client $client)
     {
-        return $this->doShow($project, new ProjectTransformer);
+        return $this->doShow($client, new ClientTransformer);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Project $project
+     * @param  int  Client $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Client $client)
     {
         $rules = [
-            'name'      => 'required|unique:projects,name,'.$project->id,
-            'client_id' => 'required|exists:clients,id',
+            'name' => 'required|unique:clients,name,'.$client->id,
         ];
 
-        return $this->doUpdate($request, new Project, $rules, new ProjectTransformer);
+        return $this->doUpdate($request, new Client, $rules, new ClientTransformer);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Project $project
+     * @param  int  Client $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Client $client)
     {
-        return $this->doDestroy($project);
+        return $this->doDestroy($client);
     }
 }
