@@ -22,8 +22,8 @@ class CreateUserStoriesTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->timestamps();
           
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 
